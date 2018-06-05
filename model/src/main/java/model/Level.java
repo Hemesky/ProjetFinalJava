@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
 
-import model.dao.StoredProcedureDAO;
+import model.dao.ProceduresWithDAO;
 import model.element.mobile.Lorann;
 import model.element.mobile.Monster1;
 import model.element.mobile.Monster2;
@@ -56,44 +56,44 @@ public class Level extends Observable implements ILevel{
 	    	}
 	    	
 	    	
-	    	 ResultSet result = StoredProcedureDAO.getLevelCompById(idlevel); //
+	    	 ResultSet result = ProceduresWithDAO.getLevelCompById(idlevel); //
 	     	
-	         while(result.next()) { //while there is element for this level then we overwrite the default background
+	         while(result.next()) { 
 	         	
-	         	switch (result.getString(StoredProcedureDAO.getColumnSprite()).charAt(0)) {
+	         	switch (result.getString(ProceduresWithDAO.getColumnSprite()).charAt(0)) {
 	         	
-	         	case '@'://if character correspond to lorann (@) then we create lorann
-	         		setLorann(new Lorann(result.getInt(StoredProcedureDAO.getColumnX()), result.getInt(StoredProcedureDAO.getColumnY()), this));
+	         	case '@':
+	         		setLorann(new Lorann(result.getInt(ProceduresWithDAO.getColumnX()), result.getInt(ProceduresWithDAO.getColumnY()), this));
 	         		break;
-	         	case '1'://if character correspond to monster1 (1) then we create monster1
-	             	setMonster1(new Monster1(result.getInt(StoredProcedureDAO.getColumnX()), result.getInt(StoredProcedureDAO.getColumnY()), this));
+	         	case '1':
+	             	setMonster1(new Monster1(result.getInt(ProceduresWithDAO.getColumnX()), result.getInt(ProceduresWithDAO.getColumnY()), this));
 	             	setMonster1instance(true);
 	             	break;
-	         	case '2'://if character correspond to monster2 (2) then we create monster2
-	             	setMonster2(new Monster2(result.getInt(StoredProcedureDAO.getColumnX()), result.getInt(StoredProcedureDAO.getColumnY()), this));
+	         	case '2':
+	             	setMonster2(new Monster2(result.getInt(ProceduresWithDAO.getColumnX()), result.getInt(ProceduresWithDAO.getColumnY()), this));
 	             	setMonster2instance(true);
 	             	break;
-	         	case '3'://if character correspond to monster3 (3) then we create monster3
-	             	setMonster3(new Monster3(result.getInt(StoredProcedureDAO.getColumnX()), result.getInt(StoredProcedureDAO.getColumnY()), this));
+	         	case '3':
+	             	setMonster3(new Monster3(result.getInt(ProceduresWithDAO.getColumnX()), result.getInt(ProceduresWithDAO.getColumnY()), this));
 	             	setMonster3instance(true);
 	             	break;
-	         	case '4'://if character correspond to monster4 (4) then we create monster4
-	             	setMonster4(new Monster4(result.getInt(StoredProcedureDAO.getColumnX()), result.getInt(StoredProcedureDAO.getColumnY()), this));
+	         	case '4':
+	             	setMonster4(new Monster4(result.getInt(ProceduresWithDAO.getColumnX()), result.getInt(ProceduresWithDAO.getColumnY()), this));
 	             	setMonster4instance(true);
 	             	break;
-	         	case 'H'://if character correspond to the door we put the door in the variable gate
+	         	case 'H':
 	         		this.setOnTheLevelXY(MotionlesElementFactory.getFromFileSymbol(
-	                 		result.getString(StoredProcedureDAO.getColumnSprite()).charAt(0)),result.getInt(StoredProcedureDAO.getColumnX()),result.getInt(StoredProcedureDAO.getColumnY()));
-	         		setGate(this.getOnTheLevelXY(result.getInt(StoredProcedureDAO.getColumnX()),result.getInt(StoredProcedureDAO.getColumnY())));
+	                 		result.getString(ProceduresWithDAO.getColumnSprite()).charAt(0)),result.getInt(ProceduresWithDAO.getColumnX()),result.getInt(ProceduresWithDAO.getColumnY()));
+	         		setGate(this.getOnTheLevelXY(result.getInt(ProceduresWithDAO.getColumnX()),result.getInt(ProceduresWithDAO.getColumnY())));
 	             	break; 
-	         	case 'X'://if character correspond to the crystal we put it in the variable crystall
+	         	case 'X':
 	         		this.setOnTheLevelXY(MotionlesElementFactory.getFromFileSymbol(
-	                 		result.getString(StoredProcedureDAO.getColumnSprite()).charAt(0)),result.getInt(StoredProcedureDAO.getColumnX()),result.getInt(StoredProcedureDAO.getColumnY()));
-	         		setCrystal(this.getOnTheLevelXY(result.getInt(StoredProcedureDAO.getColumnX()),result.getInt(StoredProcedureDAO.getColumnY())));
+	                 		result.getString(ProceduresWithDAO.getColumnSprite()).charAt(0)),result.getInt(ProceduresWithDAO.getColumnX()),result.getInt(ProceduresWithDAO.getColumnY()));
+	         		setCrystal(this.getOnTheLevelXY(result.getInt(ProceduresWithDAO.getColumnX()),result.getInt(ProceduresWithDAO.getColumnY())));
 	             	break;
 	             default:
 	         	this.setOnTheLevelXY(MotionlesElementFactory.getFromFileSymbol(
-	             		result.getString(StoredProcedureDAO.getColumnSprite()).charAt(0)),result.getInt(StoredProcedureDAO.getColumnX()),result.getInt(StoredProcedureDAO.getColumnY()));
+	             		result.getString(ProceduresWithDAO.getColumnSprite()).charAt(0)),result.getInt(ProceduresWithDAO.getColumnX()),result.getInt(ProceduresWithDAO.getColumnY()));
 	             break;
 	             }
 	         }

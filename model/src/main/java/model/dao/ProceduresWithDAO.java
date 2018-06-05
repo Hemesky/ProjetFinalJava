@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public abstract class StoredProcedureDAO extends AbstractDAO {
+public abstract class ProceduresWithDAO extends AbstractDAO {
 
     /**
      * 
