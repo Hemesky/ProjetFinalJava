@@ -106,13 +106,7 @@ public class ViewFacade implements IViewFacade, Runnable, KeyListener {
 	}
 	
 	
-	public void PurseUpdate() {
-		try {
-			getLevel().getGate().getImage().getGraphics().drawImage(ImageIO.read(new File("/Users/serhat/Downloads/Lorann/main/sprites/gate_open.png")),0,0, null); 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	
 	
 	public void PowerSpawn (IMobile power) {
 		boardFrame.addPawn(power);
@@ -195,9 +189,9 @@ public class ViewFacade implements IViewFacade, Runnable, KeyListener {
     
     private void setLevel(final ILevel level) throws IOException {
         this.level = level;
-        for (int x = 0; x < ViewFacade.squareNumberWidth; x++) { //this double for made the level
+        for (int x = 0; x < ViewFacade.squareNumberWidth; x++) { 
             for (int y = 0; y < ViewFacade.squareNumberHeight; y++) {
-                this.getLevel().getOnTheLevelXY(x, y).getSprite().loadImage(); //it place in memory the picture corresponding to a postion X Y
+                this.getLevel().getOnTheLevelXY(x, y).getSprite().loadImage(); 
             }
         }
     }

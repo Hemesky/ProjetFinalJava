@@ -31,39 +31,53 @@ public abstract class Mobile extends Element implements IMobile{
 	@Override
     public void moveUp() {
         this.setY(this.getY() - 1);
-        this.setHasMoved();
+       
       
-        
-        
+        if (this.isCrashed()) {
+            this.setY(this.getY() + 1);
+        }
+        this.setHasMoved();
     }
 
     @Override
     public void moveLeft() {
         this.setX(this.getX() - 1);
-        this.setHasMoved();
+       
       
-        
+        if (this.isCrashed()) {
+            this.setX(this.getX() + 1);
+        }
+        this.setHasMoved();
     }
 
     @Override
     public void moveDown() {
         this.setY(this.getY() + 1);
+        
+        if (this.isCrashed()) {
+            this.setY(this.getY() - 1);
+        }
         this.setHasMoved();
-      
     }
 
     @Override
     public void moveRight() {
         this.setX(this.getX() + 1);
+       
+        if (this.isCrashed()) {
+            this.setX(this.getX() - 1);
+        }
         this.setHasMoved();
-     
     }
     
     @Override
     public void moveDownRight() {
         this.setX(this.getX() + 1);
         this.setY(this.getY() + 1);
-      
+        if (this.isCrashed()) {
+            this.setX(this.getX() - 1);
+            this.setY(this.getY() - 1);
+        }
         this.setHasMoved();
     }
     
@@ -71,7 +85,10 @@ public abstract class Mobile extends Element implements IMobile{
     public void moveDownLeft() {
         this.setX(this.getX() - 1);
         this.setY(this.getY() + 1);
-     
+        if (this.isCrashed()) {
+            this.setX(this.getX() + 1);
+            this.setY(this.getY() - 1);
+        }
         this.setHasMoved();
     }
     
@@ -79,7 +96,10 @@ public abstract class Mobile extends Element implements IMobile{
     public void moveUpRight() {
         this.setX(this.getX() + 1);
         this.setY(this.getY() - 1);
-     
+        if (this.isCrashed()) {
+            this.setX(this.getX() - 1);
+            this.setY(this.getY() + 1);
+        }
         this.setHasMoved();
     }
     
@@ -87,7 +107,10 @@ public abstract class Mobile extends Element implements IMobile{
     public void moveUpLeft() {
         this.setX(this.getX() - 1);
         this.setY(this.getY() - 1);
-       
+        if (this.isCrashed()) {
+            this.setX(this.getX() + 1);
+            this.setY(this.getY() + 1);
+        }
         this.setHasMoved();
     }
 
