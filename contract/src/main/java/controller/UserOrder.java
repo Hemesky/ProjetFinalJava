@@ -12,7 +12,7 @@ public enum UserOrder {
     UPLEFT,
     UPRIGHT,
     SHOOT,
-    NOP
+    NOTHING
 
 }
 

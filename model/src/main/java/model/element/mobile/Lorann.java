@@ -114,8 +114,8 @@ public class Lorann extends Mobile implements ISprite{
 	    
 	    
 	    @Override
-	    public final void doNothing() {
-	    	super.doNothing();
+	    public final void nothing() {
+	    	super.nothing();
 	    	if(delay == 6) {
 	    		delay=0;
 		    	switch ( getCounter() ) { 

@@ -133,9 +133,9 @@ public class Energy extends Mobile implements ISprite {
 		     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#doNothing()
 		     */
 		    @Override
-		    public final void doNothing() {
+		    public final void nothing() {
 		    	this.SpriteChanger();
-		    	super.doNothing();
+		    	super.nothing();
 
 		    }
 

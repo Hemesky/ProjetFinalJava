@@ -104,8 +104,8 @@ public class Monster1 extends Mobile implements ISprite{
      * @see fr.exia.insanevehicles.model.element.mobile.Mobile#doNothing()
      */
     @Override
-    public final void doNothing() {
-    	super.doNothing();
+    public final void nothing() {
+    	super.nothing();
 		this.setSprite(sprite);
 		
 

@@ -86,8 +86,8 @@ public class Monster4 extends Mobile implements ISprite{
 
    
     @Override
-    public final void doNothing() {
-    	super.doNothing();
+    public final void nothing() {
+    	super.nothing();
 		this.setSprite(sprite);
 		
 

@@ -2,12 +2,7 @@ package controller;
 
 import java.io.IOException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-
-
 import model.IElement;
 import model.IMobile;
 
@@ -20,91 +15,77 @@ import view.IViewFacade;
 
 public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 
-    /** The game-thread refresh speed. */
+    
     private static final int speed = 50;
 
-    /** The view. */
+    
     private IViewFacade view;
 
-    /** The model. */
+ 
     private IModelFacade model;
 
-    /** The stack order. */
+   
     private UserOrder stackOrder;
     
-    /** The monster of type 1. */
+    
     private IMobile monster1;
     
-    /** The monster of type 1. */
+   
     private IMobile monster2;
 
-	/** The monster of type 1. */
+	
     private IMobile monster3;
     
-    /** The monster of type 1. */
+    
     private IMobile monster4;
     
-    /** Array of monster */
+    
     private ArrayList monsters;
     
-    /** The Monsters speed counter */
+    
 	private int monsterDelay = 1;
     
-    /** The Lorann. */
+   
     private IMobile lorann;
     
-    /** The Gate. */
+   
     private IElement gate;
     
-    /** The Crystal. */
+    
     private IElement crystal;
     
-    /** The Super Power of Loran */
+   
     public IMobile power;
     
-    /** Store the lastLorannOrder */
+  
     private UserOrder lastLorannOrder;
     
-    /** take the value of the lastLorannOrder to know in which direction the power must go */
+   
     private UserOrder powerOrder;
     
-    /** Ammo of the player allow instantiation of power */
+   
     private boolean ammo = true;
     
-    /** The Power speed counter */
     private int powerDelay = 5;
 
-     /** The boolean to stop game if player finish the level */
+   
     private boolean win;
 	
-	/** The Monster speed */
+	
 	private int mobSpeed = 15;
 	
-	/** The Power speed */
+	
     private int powerSpeed = 5;
 
 	
-    /**
-     * Instantiates a new Lorann controller
-     * It will be used to move the player, monsters, power and the level and also to check if there is collision, kill ...
-     *
-     *
-     * @param view
-     *            the view
-     * @param model
-     *            the model
-     */
+  
 	public ControllerFacade(final IViewFacade view, final IModelFacade model) {
 		this.setView(view);
 	    this.setModel(model);
-	    this.clearStackOrder(); //set the user order to NOP so we are sure that the player do not move on spawn
+	    this.clearForStart(); 
 	}
 
-	/**
-	 * Drive the game element movement, behavior and threading
-	 * @throws IOException 
-	 */
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public void play() throws InterruptedException, IOException {
 		
@@ -132,22 +113,22 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 		if(getModel().getLevel().getMonster1instance() != false) { 
 			monster1 = getModel().getLevel().getMonster1();
 			monster1.alive();
-			monster1.doNothing();
+			monster1.nothing();
 			}
         if(getModel().getLevel().getMonster2instance() != false) {
         	monster2 = getModel().getLevel().getMonster2();
         	monster2.alive();
-        	monster2.doNothing();
+        	monster2.nothing();
         	}
         if(getModel().getLevel().getMonster3instance() != false) {
         	monster3 = getModel().getLevel().getMonster3();
         	monster3.alive();
-        	monster3.doNothing();
+        	monster3.nothing();
         	}
         if(getModel().getLevel().getMonster4instance() != false) {
         	monster4 = getModel().getLevel().getMonster4();
         	monster4.alive();
-        	monster4.doNothing();
+        	monster4.nothing();
         	}
         
        
@@ -172,7 +153,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 			Thread.sleep(speed); 
 			
 			
-			if(lorann.isOnCrystall()) {
+			if(lorann.isOnCrystal()) {
 				
 				gate.setPermeability(Permeability.OPENGATE);
 	        	crystal.setPermeability(Permeability.PENETRABLE);
@@ -186,7 +167,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 			if(lorann.isKilled()) lorann.die();
 			
 			
-			switch (this.getStackOrder()) { //this case execute the method associated to the user order (move, shot, nothing)
+			switch (this.gerOrderFromUser()) { //this case execute the method associated to the user order (move, shot, nothing)
                 case RIGHT:
                     this.lorann.moveRight();
                     lastLorannOrder=UserOrder.RIGHT;
@@ -225,9 +206,9 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
                 	powerOrder=lastLorannOrder;
                 	ammo = false;
                 	}
-                case NOP:
+                case NOTHING:
                 default:
-                	this.lorann.doNothing();
+                	this.lorann.nothing();
                 	break;
 			}
 			
@@ -240,7 +221,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 			if(monster4!=null && monster4.isAlive()) MonsterIA(monster4);
 
             
-            this.clearStackOrder(); // this reset the user order to NOP so it will not continue to move when you released the key
+            this.clearForStart(); // this reset the user order to NOP so it will not continue to move when you released the key
 
         }
 		if (win != true) {
@@ -290,7 +271,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 	}
 	
 	public void PowerMechanism() {
-		//this if manage the power movement speed & picture change speed
+		
 		if(powerDelay == powerSpeed) { 
 			powerDelay=0;
 			switch (this.powerOrder) {
@@ -308,10 +289,10 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 	            break;
 			}
 		}
-	   	//if the counter doesn't match speed then we increment the counter
+	   	
 	   	else powerDelay++;
 	   	
-		//if Lorann is on the power then destroy the last power, and get 1 ammo
+		
 		if(lorann.getX()==power.getX() && lorann.getY()==power.getY()) {
 			power.die();
 			ammo = true;
@@ -382,7 +363,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
      *
      * @return the stack order
      */
-    private UserOrder getStackOrder() {
+    private UserOrder gerOrderFromUser() {
         return this.stackOrder;
     }
 
@@ -399,8 +380,8 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
     /**
      * Clear stack order.
      */
-    private void clearStackOrder() {
-        this.stackOrder = UserOrder.NOP;
+    private void clearForStart() {
+        this.stackOrder = UserOrder.NOTHING;
     }
 
    /**

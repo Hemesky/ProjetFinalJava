@@ -178,7 +178,7 @@ public class ViewFacade implements IViewFacade, Runnable, KeyListener {
                 userOrder = UserOrder.SHOOT;
                 break;
             default:
-                userOrder = UserOrder.NOP;
+                userOrder = UserOrder.NOTHING;
                 break;
         }
         return userOrder;

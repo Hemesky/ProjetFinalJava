@@ -117,7 +117,7 @@ public abstract class Mobile extends Element implements IMobile{
     }
 
     @Override
-    public void doNothing() {
+    public void nothing() {
         this.setHasMoved();
     }
 	
@@ -226,7 +226,7 @@ public abstract class Mobile extends Element implements IMobile{
      * get if mobile element his in a crystal
      */    
     @Override
-    public Boolean isOnCrystall() {
+    public Boolean isOnCrystal() {
         return this.getLevel().getOnTheLevelXY(this.getX(), this.getY()).getPermeability() == Permeability.OPENNING;
     }
     

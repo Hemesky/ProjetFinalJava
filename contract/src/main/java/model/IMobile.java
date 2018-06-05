@@ -31,7 +31,7 @@ public interface IMobile extends IPawn, IElement{
 	void moveDownRight();
 	
 	
-	void doNothing();
+	void nothing();
 	
     @Override
     int getX();
@@ -51,7 +51,7 @@ public interface IMobile extends IPawn, IElement{
     
     Boolean isCrashed();
 	Boolean isKilled();
-	Boolean isOnCrystall();
+	Boolean isOnCrystal();
 	Boolean isOnOpenGate();
 
    @Override
