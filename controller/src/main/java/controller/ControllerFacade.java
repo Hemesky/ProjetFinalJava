@@ -12,7 +12,11 @@ import model.element.mobile.Energy;
 import view.IViewFacade;
 
 
-
+/*
+ * Ce ControllerFacade va tout simplement instancier Lorann et les elements ainsi que les mouvements et l'animation monstres/energies.
+ * 
+ * 
+ */
 public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 
     
@@ -167,7 +171,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 			if(lorann.isKilled()) lorann.die();
 			
 			
-			switch (this.gerOrderFromUser()) { //this case execute the method associated to the user order (move, shot, nothing)
+			switch (this.gerOrderFromUser()) { 
                 case RIGHT:
                     this.lorann.moveRight();
                     lastLorannOrder=UserOrder.RIGHT;
@@ -221,16 +225,18 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 			if(monster4!=null && monster4.isAlive()) MonsterIA(monster4);
 
             
-            this.clearForStart(); // this reset the user order to NOP so it will not continue to move when you released the key
-
+            this.clearForStart(); 
         }
 		if (win != true) {
 		lorann.die();
 		
-        this.getView().displayMessage("You loose"); //when the main loop is break this display the message you loose on a popup 	
+        this.getView().displayMessage("You loose"); 	
+        
 		}
 		else {
+		// faire le changement de niveau ici, menu
 		this.getView().displayMessage("You win");
+		
 		}
 	}
 	
@@ -238,11 +244,10 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 	 * This function is a kind of IA for monster to go on Lorann
 	 */
 	private void MonsterIA(IMobile monster) {
-		//if the counter of delay match the mob wanted speed then we enter this if to move mob to the player
+	
 		if(monsterDelay == mobSpeed) { 
     		monsterDelay=0;
-    		//if(monster != null) {
-    		//move the monster to the player
+    		
 			if(lorann.getX() > monster.getX()) {
 	            monster.moveRight();
 			}
@@ -255,13 +260,13 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 			if(lorann.getY() > monster.getY()) {
 	            monster.moveDown();
 			}
-    		//}
+    		
 	   	}
-	   	//if the counter doesn't match speed then we increment the counter
-	   	else monsterDelay++;
+	
+	  // 	else monsterDelay++;
 	   	
-		//go to the function that check if player is on a monster so he has to be killed
-		MobKillChecker(monster);
+	
+		MobKillChecker(monster); // WILL CHECK IF A MONSTER KILLED LORANN
 
 		if(power!=null)PowerKillChecker(monster);
 	}
@@ -287,6 +292,8 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 	        case UP:
 	            this.power.moveDown();
 	            break;
+			default:
+				break;
 			}
 		}
 	   	
@@ -312,9 +319,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 			powerDelay = 5;
 	}}
 	
-    /**
-     * Write the UserOrder in the stack of order (stackOrder)
-     */
+    
 	@Override
 	public void orderPerform(UserOrder userOrder) throws IOException {
 		this.setStackOrder(userOrder);

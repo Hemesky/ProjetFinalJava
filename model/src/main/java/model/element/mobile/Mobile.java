@@ -32,51 +32,38 @@ public abstract class Mobile extends Element implements IMobile{
     public void moveUp() {
         this.setY(this.getY() - 1);
         this.setHasMoved();
-      //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setY(this.getY() + 1);
-        }
+      
+        
+        
     }
 
     @Override
     public void moveLeft() {
         this.setX(this.getX() - 1);
         this.setHasMoved();
-      //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setX(this.getX() + 1);
-        }
+      
+        
     }
 
     @Override
     public void moveDown() {
         this.setY(this.getY() + 1);
         this.setHasMoved();
-      //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setY(this.getY() - 1);
-        }
+      
     }
 
     @Override
     public void moveRight() {
         this.setX(this.getX() + 1);
         this.setHasMoved();
-      //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setX(this.getX() - 1);
-        }
+     
     }
     
     @Override
     public void moveDownRight() {
         this.setX(this.getX() + 1);
         this.setY(this.getY() + 1);
-      //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setX(this.getX() - 1);
-            this.setY(this.getY() - 1);
-        }
+      
         this.setHasMoved();
     }
     
@@ -84,11 +71,7 @@ public abstract class Mobile extends Element implements IMobile{
     public void moveDownLeft() {
         this.setX(this.getX() - 1);
         this.setY(this.getY() + 1);
-      //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setX(this.getX() + 1);
-            this.setY(this.getY() - 1);
-        }
+     
         this.setHasMoved();
     }
     
@@ -96,11 +79,7 @@ public abstract class Mobile extends Element implements IMobile{
     public void moveUpRight() {
         this.setX(this.getX() + 1);
         this.setY(this.getY() - 1);
-      //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setX(this.getX() - 1);
-            this.setY(this.getY() + 1);
-        }
+     
         this.setHasMoved();
     }
     
@@ -108,11 +87,7 @@ public abstract class Mobile extends Element implements IMobile{
     public void moveUpLeft() {
         this.setX(this.getX() - 1);
         this.setY(this.getY() - 1);
-        //If the player is crashed we is moved to his previous position
-        if (this.isCrashed()) {
-            this.setX(this.getX() + 1);
-            this.setY(this.getY() + 1);
-        }
+       
         this.setHasMoved();
     }
 
