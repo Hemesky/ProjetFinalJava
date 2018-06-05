@@ -13,7 +13,7 @@ import model.IMobile;
 
 import model.IModelFacade;
 import model.Permeability;
-import model.element.mobile.SupraPower;
+import model.element.mobile.Energy;
 import view.IViewFacade;
 
 
@@ -220,7 +220,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
                     lastLorannOrder=UserOrder.UPLEFT;
                     break;
                 case SHOOT:
-                	if(ammo) {power = new SupraPower(lorann.getX(), lorann.getY(), getModel().getLevel());
+                	if(ammo) {power = new Energy(lorann.getX(), lorann.getY(), getModel().getLevel());
                 	getView().PowerSpawn(power);
                 	powerOrder=lastLorannOrder;
                 	ammo = false;

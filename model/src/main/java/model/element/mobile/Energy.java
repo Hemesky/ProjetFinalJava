@@ -7,7 +7,7 @@ import model.ISprite;
 import model.Permeability;
 import model.element.Sprite;
 
-public class SupraPower extends Mobile implements ISprite {
+public class Energy extends Mobile implements ISprite {
 	
 	  private static final ISprite sprite1  = new Sprite('!', "fireball_1.png");
 	    private static final ISprite sprite2  = new Sprite('!', "fireball_2.png");
@@ -15,7 +15,7 @@ public class SupraPower extends Mobile implements ISprite {
 	    private static final ISprite sprite4  = new Sprite('!', "fireball_4.png");
 	    private static final ISprite sprite5  = new Sprite('!', "fireball_5.png");
 	    private static final ISprite nosprite  = new Sprite('!', "noimage.png");
-		private int delay = 1;
+		// private int delay = 1;
 		private int counter = 1;
 	    
 	    public int getCounter() {
@@ -26,7 +26,7 @@ public class SupraPower extends Mobile implements ISprite {
 			this.counter = counter;
 		}
 		
-		  public SupraPower(final int x, final int y, final ILevel level) throws IOException {
+		  public Energy(final int x, final int y, final ILevel level) throws IOException {
 		        super(x, y, sprite1, level, Permeability.POWER);
 		        sprite1.loadImage();
 		        sprite2.loadImage();
