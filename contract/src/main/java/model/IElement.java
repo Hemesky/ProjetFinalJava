@@ -10,5 +10,7 @@ public interface IElement extends ISquare {
 	  Permeability getPermeability();
 	  Image getImage();
 	  void setPermeability(Permeability permeability);
-
+	  void die();
+	  
+	  
 }

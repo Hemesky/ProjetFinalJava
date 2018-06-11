@@ -18,8 +18,8 @@ import model.element.motionless.MotionlesElementFactory;
 
 
 public class Level extends Observable implements ILevel{
-	 public int          width = 28;
-	 public int 		 height= 12;
+	 public static int          width = 28;
+	 public static int 		 height= 12;
 	 
 	 private IElement[][] onTheLevel;
 	 private IMobile lorann;
@@ -37,7 +37,7 @@ public class Level extends Observable implements ILevel{
 	 private IElement gate;
 	 private IElement crystal;
 	 
-	 Level(final int idlevel) throws IOException, SQLException {       
+	 public Level(final int idlevel) throws IOException, SQLException {       
 	    	super();
 	        this.loadLevel(idlevel);
 	    }
@@ -145,7 +145,7 @@ public class Level extends Observable implements ILevel{
 	     * Notify view of change
 	     */
 	    @Override
-	    public final void setMobileHasChanged() {
+	    public final void setMobileHasChanged() { // Implementation of DP observer
 	        this.setChanged();
 	        this.notifyObservers();
 	    }

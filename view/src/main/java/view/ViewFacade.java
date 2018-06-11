@@ -161,7 +161,7 @@ public class ViewFacade implements IViewFacade, Runnable, KeyListener {
      */
     @Override
     public void keyTyped(final KeyEvent keyEvent) {
-        // Not used
+        
     }
 
     

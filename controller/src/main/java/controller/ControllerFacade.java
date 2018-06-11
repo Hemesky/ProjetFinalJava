@@ -2,7 +2,7 @@ package controller;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import model.IElement;
 import model.IMobile;
 
@@ -22,6 +22,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
     
     private static final int speed = 50;
 
+  
     
     private IViewFacade view;
 
@@ -44,7 +45,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
     private IMobile monster4;
     
     
-    private ArrayList monsters;
+  //  private ArrayList monsters;
     
     
 	private int monsterDelay = 1;
@@ -58,6 +59,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
     
     private IElement crystal;
     
+  //  private IElement Purse;
    
     public IMobile power;
     
@@ -164,7 +166,16 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 				getView().OpenGateUpdate();
 			}
 			
+		
+			/**if (lorann.isOnPurse()) {
+			//  Purse.setPermeability(Permeability.PENETRABLE);
+			 // Purse.die();
+			 
+			  
+			  score+=1;
 			
+				
+			} */
 			if(lorann.isOnOpenGate()) win = true;
 			
 			
@@ -236,6 +247,9 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 		else {
 		// faire le changement de niveau ici, menu
 		this.getView().displayMessage("You win");
+	//	this.getView().displayMessage("Your score is "+ score);
+	//	score = 0;
+		this.getView().displayMessage("Next Level ?");
 		
 		}
 	}
@@ -263,7 +277,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
     		
 	   	}
 	
-	  // 	else monsterDelay++;
+	  else monsterDelay++;
 	   	
 	
 		MobKillChecker(monster); // WILL CHECK IF A MONSTER KILLED LORANN
@@ -308,6 +322,8 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
 		}
 	}
 	
+	
+	
 	public void PowerKillChecker(IMobile monster) {
 		
 		if(power.getX()==monster.getX() && power.getY()==monster.getY()) {
@@ -330,7 +346,7 @@ public class ControllerFacade implements IControllerFacade, IOrderPerformer {
      *
      * @return the view
      */
-    private IViewFacade getView() {
+    IViewFacade getView() {
         return this.view;
     }
     

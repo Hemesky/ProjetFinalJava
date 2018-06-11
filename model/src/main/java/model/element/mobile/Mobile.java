@@ -119,10 +119,7 @@ public abstract class Mobile extends Element implements IMobile{
         this.setHasMoved();
     }
 	
-    
-    /*
-     * Sets the has moved.
-     */
+   
     protected void setHasMoved() {
         this.getLevel().setMobileHasChanged();
     }
@@ -234,6 +231,11 @@ public abstract class Mobile extends Element implements IMobile{
     @Override
     public Boolean isOnOpenGate() {
         return this.getLevel().getOnTheLevelXY(this.getX(), this.getY()).getPermeability() == Permeability.OPENGATE;
+    }
+    
+    public Boolean isOnPurse() {
+    
+    	return this.getLevel().getOnTheLevelXY(this.getX(), this.getY()).getPermeability() == Permeability.PENETRABLE;
     }
 
     /**

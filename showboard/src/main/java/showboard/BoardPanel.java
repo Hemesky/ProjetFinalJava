@@ -70,7 +70,7 @@ class BoardPanel extends JPanel implements Observer {
     /** The center of the board. */
     private Rectangle           displayFrame;
 
-    /** The no image is used to factorize the NoImage loading. */
+   
     private final BufferedImage noImage;
 
     /** The width looped. */

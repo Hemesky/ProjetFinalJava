@@ -39,5 +39,15 @@ public class Element implements IElement {
 	    public final Image getImage() {
 	        return this.getSprite().getImage();
 	    }
+
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
+
+	
+	  
 }
