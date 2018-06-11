@@ -15,7 +15,7 @@ public class Main {
 	
 	public static void main(final String[] args) throws IOException, InterruptedException, SQLException {
 	
-		final IModelFacade model = new ModelFacade(1); 									
+		final IModelFacade model = new ModelFacade(2); 									
         final IViewFacade view = new ViewFacade(model.getLevel()); 						
         final IControllerFacade controller = new ControllerFacade(view, model); 		
         view.setOrderPerformer(controller.getOrderPeformer()); 							
